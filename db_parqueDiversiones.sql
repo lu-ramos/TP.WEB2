@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 20-09-2023 a las 23:59:06
+-- Tiempo de generación: 21-09-2023 a las 00:44:16
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -33,6 +33,17 @@ CREATE TABLE `Categorias` (
   `descripcion` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `Categorias`
+--
+
+INSERT INTO `Categorias` (`id_categoria`, `nombre_categoria`, `descripcion`) VALUES
+(1, 'Acuáticos', 'Parque de agua'),
+(2, 'Safari', 'Recorrido por la jungla'),
+(3, 'Eléctricos', 'Juegos simuladores'),
+(4, 'Niños', 'Shows infantiles'),
+(5, 'Adrenalina', 'Juegos de altura');
+
 -- --------------------------------------------------------
 
 --
@@ -44,6 +55,19 @@ CREATE TABLE `Juegos` (
   `nombre_juego` varchar(45) NOT NULL,
   `id_categoria` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `Juegos`
+--
+
+INSERT INTO `Juegos` (`id_juego`, `nombre_juego`, `id_categoria`) VALUES
+(1, 'Toboganes', 1),
+(2, 'Desorbitado', 5),
+(3, 'Zoo', 2),
+(4, 'Simuladores', 3),
+(5, 'Show Nemo', 4),
+(6, 'Montaña Rusa', 5),
+(7, 'Autitos Chocadores', 3);
 
 --
 -- Índices para tablas volcadas
@@ -70,13 +94,13 @@ ALTER TABLE `Juegos`
 -- AUTO_INCREMENT de la tabla `Categorias`
 --
 ALTER TABLE `Categorias`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `Juegos`
 --
 ALTER TABLE `Juegos`
-  MODIFY `id_juego` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_juego` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas
