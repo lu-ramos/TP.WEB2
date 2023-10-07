@@ -1,0 +1,10 @@
+<form action="auth" method="POST">
+    <label for="usuario">Usuario</label><input type="text" name="usuario">;
+    <label for="password">Contraseña</label><input type="password" name="password">;
+
+    <?php if ($error) : ?>
+        <?= $error ?>
+    <?php endif ?>
+
+    <button type="submit">Entrar</button>
+</form>
