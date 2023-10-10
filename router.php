@@ -1,6 +1,8 @@
 <?php
 
 require_once './app/controllers/game.controller.php';
+require_once './app/controllers/category.controller.php';
+require_once './app/controllers/auth.controller.php';
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
@@ -24,11 +26,11 @@ switch ($params[0]) {
     case 'listarJuegos':
         $controller = new GameController();
         $controller->showGames();
-        break;
+    break;
     case 'detalleJuego';
         $controller = new GameController();
         $controller->showGameDetails($params[1]);
-        break;
+    break;
     case 'listarCategorias':
         $controller = new CategoryController();
         $controller->showCategory();
@@ -36,6 +38,8 @@ switch ($params[0]) {
     case 'juegosCategoria':
         $controller = new CategoryController();
         $controller->showGamesByCategory($params[1]);
+    break;
+
 }
 
 

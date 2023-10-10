@@ -1,8 +1,9 @@
 <?php
 require_once './app/models/user.model.php';
 require_once './app/views/auth.view.php';
+require_once './helpers/auth.helper.php';
 
-class AuthController {
+class AuthController{
 
     private $model;
     private $view;
@@ -25,6 +26,8 @@ class AuthController {
             return;
         }
        
+        ///aca hay que modificar????
+        
         $user = $this->model->getUser($usuario);
         if($user && password_verify($password, $user->password)){
             AuthHelper::login($user);

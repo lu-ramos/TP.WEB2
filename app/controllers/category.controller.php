@@ -29,6 +29,33 @@ class CategoryController{
         $this->view->showGamesByCategory($categoryGames);
     }
 
+    public function addCategory() {
+
+        $category = $_POST['category']; //obtengo los juegos
+  
+        if (empty($category)) {
+            $this->view->showError("Debe completar todos los campos");
+            return;
+        }
+
+        $id = $this->model->insertCategory($category);
+        if ($id) {
+            header('Location: ' . BASE_URL);
+        } else {
+            $this->view->showError("Error al insertar la categoria");
+        }
+    }
+
+    public function removecategory ($id) {
+        $this->model->deleteCategory ($id);
+        header('Location: ' . BASE_URL);
+    }
+
+    public function modifyCategory($id) {
+        $this->model->updateCategory ($id);
+        header('Location: ' . BASE_URL);
+    }
+
 }
 
 ?>

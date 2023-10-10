@@ -4,7 +4,7 @@ class UserModel {
 
     private $db;
 
-    function __construct(){
+    public function __construct(){
         $this->db = new PDO('mysql:host=localhost;dbname=db_parqueDiversiones;charset=utf8', 'root', '');
     }
 
@@ -14,6 +14,11 @@ class UserModel {
 
         $user = $query->fetch(PDO::FETCH_OBJ);
         return $user;
+    }
+
+    public function addUser(){
+        $query = $db->prepare('INSERT INTO usuarios (usuario, password) VALUES (? , ?)');
+        $query->execute([$usuario,$password]);
     }
 
 }

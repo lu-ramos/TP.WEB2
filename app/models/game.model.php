@@ -5,12 +5,12 @@ class GameModel
 
     private $db;
 
-    function __construct()
+    public function __construct()
     {
         $this->db = new PDO('mysql:host=localhost;dbname=db_parqueDiversiones;charset=utf8', 'root', '');
     }
 
-    function getGamesWithCategoryNames()
+    public function getGamesWithCategoryNames()
     {
         $query = $this->db->prepare('SELECT juegos.*, categorias.nombre_categoria 
                                     FROM juegos 
@@ -22,7 +22,7 @@ class GameModel
     }
 
 
-    function getGameDetails($gameId){
+    public function getGameDetails($gameId){
         $query = $this->db->prepare('SELECT juegos.*, categorias.descripcion AS categoria_descripcion
                                     FROM juegos
                                     JOIN categorias ON juegos.id_categoria = categorias.id_categoria
@@ -31,6 +31,24 @@ class GameModel
         
         $gameDetails = $query->fetch(PDO::FETCH_OBJ);
         return $gameDetails;
+    }
+
+    public function insertGame($game){
+        $query = $this->db->prepare('INSERT INTO juegos (titulo) VALUES(?)');
+        $query->execute([$game]);
+
+        return $this->db->lastInsertId();
+    }
+
+    public function deleteGame($id){
+        $query = $this->db->prepare('DELETE FROM juegos WHERE id = ?');
+        $query->execute([$id]);
+    
+    }
+
+    public function updateGame ($id) {    
+        $query = $this->db->prepare('UPDATE juegos SET `id_juego`= ?, WHERE id = ?');
+        $query->execute([$id]);
     }
 
 }
