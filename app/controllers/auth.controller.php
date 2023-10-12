@@ -8,7 +8,7 @@ class AuthController{
     private $model;
     private $view;
 
-    function __construct(){
+    public function __construct(){
         $this->model = new UserModel();
         $this->view = new AuthView();
     }
@@ -25,11 +25,9 @@ class AuthController{
             $this->view->showLogin('Faltan completar datos');
             return;
         }
-       
-        ///aca hay que modificar????
         
         $user = $this->model->getUser($usuario);
-        if($user && password_verify($password, $user->password)){
+        if($user && password_verify($password, $user->password)){   //hasheo
             AuthHelper::login($user);
             header('Location: '. BASE_URL);
         }
@@ -42,8 +40,6 @@ class AuthController{
         AuthHelper::logout();
         header('Location: '. BASE_URL);
     }
-
-
 }
 
 ?>

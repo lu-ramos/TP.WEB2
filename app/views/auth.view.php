@@ -1,12 +1,12 @@
 <?php
 
-class AuthView{
+class AuthView {
 
     public function showLogin($error = null){
         require './templates/login.phtml';
     }
 
-    public function accessUser(){ 
+    public function accessUser($usuario,$password){ 
         if($usuario && $password == ($usuario->password)){
             echo "Acceso exitoso";
         }

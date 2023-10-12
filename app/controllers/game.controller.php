@@ -28,6 +28,34 @@ class GameController{
         $this->view->showGameDetails($gameDetails);
     }
 
+
+    public function addGame() {
+
+        $game = $_POST['game']; //obtengo los juegos
+  
+        if (empty($game)) {
+            $this->view->showError("Debe completar todos los campos");
+            return;
+        }
+
+        $id = $this->model->insertGame($game);
+        if ($id) {
+            header('Location: ' . BASE_URL);
+        } else {
+            $this->view->showError("Error al insertar el juego");
+        }
+    }
+
+    public function removeGame($id) {
+        $this->model->deleteGame($id);
+        header('Location: ' . BASE_URL);
+    }
+
+    public function modifyGame($id) {
+        $this->model->updateGame ($id);
+        header('Location: ' . BASE_URL);
+    }
+
+
 }
 
-?>

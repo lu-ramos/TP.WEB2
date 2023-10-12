@@ -15,10 +15,11 @@ if (!empty( $_GET['action'])) {
 // detalleJuego        ->   GameController->showGameDetails();
 // listarCategorias    ->   CategoryController->showCategory();
 // juegosCategoria     ->   CategoryController->showGamesByCategory();
+// login     ->  AuthContoller->showLogin();
+// logout   ->  AuthContoller->logout();
+// auth     ->  AuthContoller->auth();
+// error    ->  Error->showError();
 
-// login     ->  authContoller->showLogin();
-// logout   -> authContoller->logout();
-// auth     ->  authContoller->auth();
 
 $params = explode('/', $action);
 
@@ -39,7 +40,22 @@ switch ($params[0]) {
         $controller = new CategoryController();
         $controller->showGamesByCategory($params[1]);
     break;
-
+    case 'login':
+        $controller = new AuthController();
+        $controller->showLogin(); 
+    break;
+    case 'auth':
+        $controller = new AuthController();
+        $controller->auth();
+    break;
+    case 'logout':
+        $controller = new AuthController();
+        $controller->logout();
+    break;
+    case 'error':
+        $controller = new Error(); 
+       // $controller -> showError();
+    break;
 }
 
 

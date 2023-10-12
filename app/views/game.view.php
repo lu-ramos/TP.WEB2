@@ -1,15 +1,15 @@
 <?php
 
-class GameView
-{
+class GameView {
 
-    public function showGames($games)
-    {
-        echo '<ul>';
-        foreach ($games as $game) {
-            echo '<li>' . $game->nombre_juego . ' - Categoría: ' . $game->nombre_categoria . '</li>';
-        }
-        echo '</ul>';
+    public function showGames($games) {
+
+    require_once './templates/gamesList.phtml';
+        // echo '<ul>';
+        // foreach ($games as $game) {
+        //     echo '<li>' . $game->nombre_juego . ' - Categoría: ' . $game->nombre_categoria . '</li>';
+        // }
+        // echo '</ul>';
     }
 
 

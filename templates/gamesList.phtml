@@ -1,0 +1,9 @@
+
+<?php require './templates/header.phtml' ?>
+
+<ul>
+    <?php foreach ($games as $game) ?> {  
+            <li> <a href="detalleJuego/<?php $game->id_juego ?>"><?php $game->nombre_juego ?></a> </li>
+        }
+</ul>
+

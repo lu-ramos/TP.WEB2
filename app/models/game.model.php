@@ -34,7 +34,7 @@ class GameModel
     }
 
     public function insertGame($game){
-        $query = $this->db->prepare('INSERT INTO juegos (titulo) VALUES(?)');
+        $query = $this->db->prepare('INSERT INTO juegos(game) VALUES(?)');
         $query->execute([$game]);
 
         return $this->db->lastInsertId();
@@ -47,7 +47,7 @@ class GameModel
     }
 
     public function updateGame ($id) {    
-        $query = $this->db->prepare('UPDATE juegos SET `id_juego`= ?, WHERE id = ?');
+        $query = $this->db->prepare('UPDATE juegos SET `nombre_juego`= ?, WHERE id = ?');
         $query->execute([$id]);
     }
 
