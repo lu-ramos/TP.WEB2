@@ -1,9 +1,22 @@
 
 <?php require './templates/header.phtml' ?>
 
-<ul>
-    <?php foreach ($games as $game) ?> {  
-            <li> <a href="detalleJuego/<?php $game->id_juego ?>"><?php $game->nombre_juego ?></a> </li>
-        }
-</ul>
+<!-- PROBAR SI TODO ESTO FUNCIONA!!! -->
 
+<?php if (function_exists('showGames')) { ?>
+    <ul>
+        <?php foreach ($games as $game) ?> {  
+                <li> <a href="detalleJuego/<?php $game->id_juego ?>"><?php $game->nombre_juego ?></a> </li>
+            }
+    </ul>
+<?php } 
+    else ?>
+    <?php if (function_exists('showGameDetails')) { ?>
+        <h1> <?php $gameDetails->nombre_juego ?> </h1>;
+        <p> ID: <?php $gameDetails->id_juego ?> </p>;
+        <p> Descripción: <?php $gameDetails->categoria_descripcion ?> </p>;
+    <?php }  ?>
+
+
+
+<?php require './templates/footer.phtml' ?>

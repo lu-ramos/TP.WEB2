@@ -40,6 +40,17 @@ class AuthController{
         AuthHelper::logout();
         header('Location: '. BASE_URL);
     }
+
+    // public function logout() {
+    //     AuthHelper::init();
+
+    //     if (isset($_SESSION['USER_ID'])) {
+    //         // procede con la desconexión
+    //         AuthHelper::logout();
+    //     }
+    //     header('Location: ' . BASE_URL);
+    // }
+
 }
 
 ?>
