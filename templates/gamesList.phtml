@@ -2,12 +2,17 @@
 <?php require './templates/header.phtml' ?>
 
 <div>
+    <h1>Lista de juegos</h1>
     <ul class="list-group">
         <?php foreach($games as $game): ?>
             <li class="list-group-item item-task ">
                 <div>
-                    <b><?= $game->id_juego ?></b> | <?=substr($game->detalle_juego,0,100)?> | <?=substr($game->altura_minima,0,25)?>
-                    | <?=substr($game->nombre_categoria,0,50)?>
+                    <a href="detalleJuego/<?= $game->id_juego ?>">
+                        <div>
+                            <b><?= $game->nombre_juego?> </b>
+                            <?=substr($game->nombre_categoria,0,50)?>
+                        </div>
+                    </a>
                 </div>
               
             </li>

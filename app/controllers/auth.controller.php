@@ -2,6 +2,7 @@
 require_once './app/models/user.model.php';
 require_once './app/views/auth.view.php';
 require_once './helpers/auth.helper.php';
+require_once './app/views/index.view.php';
 
 class AuthController{
 
@@ -21,24 +22,28 @@ class AuthController{
         $usuario = $_POST['usuario'];
         $password = $_POST['password'];
 
-        if(empty($usuario) || empty($password)){
+        if (empty($usuario) || empty($password)) {
             $this->view->showLogin('Faltan completar datos');
             return;
         }
-        
+
         $user = $this->model->getByUser($usuario);
-        if($user && password_verify($password, $user->password)){   
+
+        if($user && password_verify($password, $user->password)){  
+
+            // 
             AuthHelper::login($user);
-            header('Location: '. BASE_URL);
+            header('Location: ' . BASE_URL);
+
         }
         else {
-            $this->view->showLogin('Usuario inválido');
+            $this->view->showWrongPassword('Usuario inválido');
         }
     }
 
     public function logout(){
-        AuthHelper::logout();
-        header('Location: '. BASE_URL);
+        session_start();
+        session_destroy();
     }
 }
 

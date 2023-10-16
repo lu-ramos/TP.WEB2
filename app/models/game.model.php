@@ -23,13 +23,12 @@ class GameModel
 
 
     public function getGameDetails($gameId){
-        $query = $this->db->prepare('SELECT juegos.*, categorias.descripcion AS categoria_descripcion
-                                    FROM juegos
-                                    JOIN categorias ON juegos.id_categoria = categorias.id_categoria
-                                    WHERE juegos.id_juego = ?');
+
+        $query = $this->db->prepare("SELECT * FROM juegos WHERE id_juego = ?  ");
         $query->execute([$gameId]);
         
         $gameDetails = $query->fetch(PDO::FETCH_OBJ);
+        // echo" $gameDetails->detalle_juego";
         return $gameDetails;
     }
 
