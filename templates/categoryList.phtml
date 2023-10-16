@@ -1,2 +1,19 @@
 <?php require './templates/header.phtml' ?>
 
+<div>
+    <ul class="list-group">
+        <?php foreach($category as $cat): ?>
+            <li class="list-group-item item-task  finalizada ">
+                <div>
+                    <b><?= $cat->id_categoria ?></b> | <?=substr($cat->nombre_categoria,0,50)?> | <?=substr($cat->descripcion,0,100)?> 
+                </div>
+              
+            </li>
+        <?php endforeach ?>
+    </ul>
+</div>
+
+<?php require './templates/footer.phtml' ?>
+
+
+

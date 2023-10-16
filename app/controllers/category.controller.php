@@ -34,7 +34,7 @@ class CategoryController{
         $category = $_POST['category']; //obtengo los juegos
   
         if (empty($category)) {
-            $this->view->showError("Debe completar todos los campos");
+           // $this->view->showError("Debe completar todos los campos");
             return;
         }
 
@@ -42,7 +42,7 @@ class CategoryController{
         if ($id) {
             header('Location: ' . BASE_URL);
         } else {
-            $this->view->showError("Error al insertar la categoria");
+            //$this->view->showError("Error al insertar la categoria");
         }
     }
 

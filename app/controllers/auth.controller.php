@@ -13,7 +13,7 @@ class AuthController{
         $this->view = new AuthView();
     }
 
-    public function showLogin(){
+    public function showLogin() {
         $this->view->showLogin();
     }
 
@@ -26,12 +26,12 @@ class AuthController{
             return;
         }
         
-        $user = $this->model->getUser($usuario);
-        if($user && password_verify($password, $user->password)){   //hasheo
+        $user = $this->model->getByUser($usuario);
+        if($user && password_verify($password, $user->password)){   
             AuthHelper::login($user);
             header('Location: '. BASE_URL);
         }
-        else{
+        else {
             $this->view->showLogin('Usuario inválido');
         }
     }
@@ -40,17 +40,6 @@ class AuthController{
         AuthHelper::logout();
         header('Location: '. BASE_URL);
     }
-
-    // public function logout() {
-    //     AuthHelper::init();
-
-    //     if (isset($_SESSION['USER_ID'])) {
-    //         // procede con la desconexión
-    //         AuthHelper::logout();
-    //     }
-    //     header('Location: ' . BASE_URL);
-    // }
-
 }
 
 ?>

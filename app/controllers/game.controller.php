@@ -34,7 +34,7 @@ class GameController{
         $game = $_POST['game']; //obtengo los juegos
   
         if (empty($game)) {
-            $this->view->showError("Debe completar todos los campos");
+            // $this->view->showError("Debe completar todos los campos");
             return;
         }
 
@@ -42,7 +42,7 @@ class GameController{
         if ($id) {
             header('Location: ' . BASE_URL);
         } else {
-            $this->view->showError("Error al insertar el juego");
+            // $this->view->showError("Error al insertar el juego");
         }
     }
 

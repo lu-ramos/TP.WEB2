@@ -1,22 +1,18 @@
 
 <?php require './templates/header.phtml' ?>
 
-<!-- PROBAR SI TODO ESTO FUNCIONA!!! -->
-
-<?php if (function_exists('showGames')) { ?>
-    <ul>
-        <?php foreach ($games as $game) ?> {  
-                <li> <a href="detalleJuego/<?php $game->id_juego ?>"><?php $game->nombre_juego ?></a> </li>
-            }
+<div>
+    <ul class="list-group">
+        <?php foreach($games as $game): ?>
+            <li class="list-group-item item-task ">
+                <div>
+                    <b><?= $game->id_juego ?></b> | <?=substr($game->detalle_juego,0,100)?> | <?=substr($game->altura_minima,0,25)?>
+                    | <?=substr($game->nombre_categoria,0,50)?>
+                </div>
+              
+            </li>
+        <?php endforeach ?>
     </ul>
-<?php } 
-    else ?>
-    <?php if (function_exists('showGameDetails')) { ?>
-        <h1> <?php $gameDetails->nombre_juego ?> </h1>;
-        <p> ID: <?php $gameDetails->id_juego ?> </p>;
-        <p> Descripción: <?php $gameDetails->categoria_descripcion ?> </p>;
-    <?php }  ?>
-
-
+</div>    
 
 <?php require './templates/footer.phtml' ?>

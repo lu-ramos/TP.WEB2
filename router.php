@@ -3,6 +3,7 @@
 require_once './app/controllers/game.controller.php';
 require_once './app/controllers/category.controller.php';
 require_once './app/controllers/auth.controller.php';
+require_once './app/controllers/index.controller.php';
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
@@ -11,6 +12,7 @@ if (!empty( $_GET['action'])) {
     $action = $_GET['action'];
 }
 
+//index    ->  IndexController-> showIndex();
 // listarJuegos        ->   GameController->showGames();
 // detalleJuego        ->   GameController->showGameDetails();
 // listarCategorias    ->   CategoryController->showCategory();
@@ -24,11 +26,15 @@ if (!empty( $_GET['action'])) {
 $params = explode('/', $action);
 
 switch ($params[0]) { 
+    case 'index':
+        $controller = new IndexController();
+        $controller->showIndex();
+    break;
     case 'listarJuegos':
         $controller = new GameController();
         $controller->showGames();
     break;
-    case 'detalleJuego';
+    case 'detalleJuego':
         $controller = new GameController();
         $controller->showGameDetails($params[1]);
     break;
@@ -52,10 +58,10 @@ switch ($params[0]) {
         $controller = new AuthController();
         $controller->logout();
     break;
-    case 'error':
-        $controller = new Error(); 
-       // $controller -> showError();
-    break;
+    // case 'error':
+    //     $controller = new Error(); 
+    //     $controller->showError();
+    // break;
 }
 
 

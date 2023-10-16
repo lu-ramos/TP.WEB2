@@ -3,6 +3,7 @@
 class GameView {
 
     public function showGames($games) {
+      //  var_dump($games);
         require_once './templates/gamesList.phtml';
     }
     // VERIFICAR CON EL GAMELIST SI FUNCIONA!
