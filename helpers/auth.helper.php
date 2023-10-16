@@ -33,7 +33,7 @@ class AuthHelper {
     public static function verify(){
         AuthHelper::init();
         if(!isset($_SESSION['id_usuario'])){
-            header('Location: '. BASE_URL.'/login');
+            header('Location: '. BASE_URL. 'login');
             die();
         }
     }

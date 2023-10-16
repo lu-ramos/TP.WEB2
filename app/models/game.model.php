@@ -32,9 +32,9 @@ class GameModel
         return $gameDetails;
     }
 
-    public function insertGame($game){
-        $query = $this->db->prepare('INSERT INTO juegos(game) VALUES(?)');
-        $query->execute([$game]);
+    public function insertGame($name, $detalle, $alturaMinima, $id_categoria){
+        $query = $this->db->prepare('INSERT INTO juegos VALUES = (?,?,?,?)');
+        $query->execute([$name, $detalle, $alturaMinima, $id_categoria]);
 
         return $this->db->lastInsertId();
     }
@@ -42,7 +42,6 @@ class GameModel
     public function deleteGame($id){
         $query = $this->db->prepare('DELETE FROM juegos WHERE id = ?');
         $query->execute([$id]);
-    
     }
 
     public function updateGame ($id) {    

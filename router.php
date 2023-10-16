@@ -4,6 +4,8 @@ require_once './app/controllers/game.controller.php';
 require_once './app/controllers/category.controller.php';
 require_once './app/controllers/auth.controller.php';
 require_once './app/controllers/index.controller.php';
+require_once './app/controllers/auth.controller.php';
+require_once './app/controllers/admin.controller.php';
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
@@ -58,6 +60,19 @@ switch ($params[0]) {
         $controller = new AuthController();
         $controller->logout();
     break;
+    case 'agregarJuego':
+        $controller = new AdminController();
+        $controller->ShowAddItemForm();
+    break;
+    case 'eliminarJuego':
+        $controller = new GameController();
+        $controller->removeGame($params[1]);
+    break;
+    case 'modificarJuego':
+        $controller = new GameController();
+        $controller->modifyGame($params[1]);
+    break;
+
     // case 'error':
     //     $controller = new Error(); 
     //     $controller->showError();

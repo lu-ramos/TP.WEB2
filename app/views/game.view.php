@@ -12,4 +12,5 @@ class GameView {
 
         require_once './templates/game.phtml';
     }
+ 
 }
