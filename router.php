@@ -69,7 +69,7 @@ switch ($params[0]) {
         $controller->removeGame($params[1]);
     break;
     case 'modificarJuego':
-        $controller = new GameController();
+        $controller = new AdminController();
         $controller->modifyGame($params[1]);
     break;
 

@@ -43,10 +43,11 @@ class GameModel
         $query = $this->db->prepare('DELETE FROM juegos WHERE id_juego = ?');
         $query->execute([$id]);
     }
-
-    public function updateGame ($id) {    
-        $query = $this->db->prepare('UPDATE juegos SET `nombre_juego`= ?, WHERE id_juego = ?');
-        $query->execute([$id]);
+   
+    
+    public function updateGame ($nombre_juego, $detalle_juego, $altura_minima, $id_categoria, $id_juego) {    
+        $query = $this->db->prepare('UPDATE juegos SET nombre_juego=?, detalle_juego=?, altura_minima=?, id_categoria=? WHERE id_juego = ?');
+        $query->execute([$nombre_juego,$detalle_juego, $altura_minima, $id_categoria, $id_juego]);
     }
 
 }
