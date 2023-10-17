@@ -14,7 +14,6 @@ class GameController{
 
     }
 
-
     public function showGames(){
         // obtiene los juegos con nombres de categoría
         $gamesWithCategories = $this->model->getGamesWithCategoryNames();
@@ -32,27 +31,7 @@ class GameController{
     }
 
 
-    public function addGame() {
 
-        $name = $_POST['nombre_juego']; //obtengo los juegos
-        $detalle = $_POST['detalle_juego'];
-        $alturaMinima = $_POST['altura_juego'];
-        $id_categoria = $_POST['id_categoria'];
-  
-        if (empty($name) || empty($detalle) || empty($alturaMinima) || empty($id_categoria)) {
-            // $this->view->showError("Debe completar todos los campos");
-            return;
-        }
-
-        $id = $this->model->insertGame($name, $detalle, $alturaMinima, $id_categoria);
-        if ($id) {
-            header('Location: ' . BASE_URL);
-        } else {
-            // $this->view->showError("Error al insertar el juego");
-        }
-
-
-    }
 
     public function removeGame($id) {
         $this->model->deleteGame($id);

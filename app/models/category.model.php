@@ -8,17 +8,25 @@ class CategoryModel {
         $this->db = new PDO('mysql:host=localhost;dbname=db_parqueDiversiones;charset=utf8','root','');
     }
 
-    public function getCategory(){
-        $query = $this->db->prepare('SELECT * FROM Categorias');
+    public function getAllCategories() {
+        $query = $this->db->prepare('SELECT * FROM categorias');
         $query->execute();
         
-        $category = $query->fetchAll(PDO::FETCH_OBJ);
-        return $category;
+        $categories = $query->fetchAll(PDO::FETCH_OBJ);
+        
+        return $categories;
     }
 
-    public function getGamesByCategory($categoryId){
+    public function getCategory($categoryId){
+
+
         $query = $this->db->prepare('SELECT * FROM juegos WHERE id_categoria = ?');
         
+        //$query = $this->db->prepare('SELECT Categorias.id_categoria, Categorias.nombre_categoria, Categorias.descripcion AS descripcion_categoria, juegos.id_juego, juegos.nombre_juego, juegos.detalle_juego, juegos.altura_minima AS descripcion_juego
+        //FROM Categorias
+        //INNER JOIN juegos ON categorias.id_categoria = juegos.id_categoria
+        //WHERE categorias.id_categoria = ?');
+
         $query->execute([$categoryId]);
         
         $categoryGames = $query->fetchAll(PDO::FETCH_OBJ);

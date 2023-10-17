@@ -1,20 +1,22 @@
+
+
 <?php require './templates/header.phtml' ?>
 <?php require './templates/nav.phtml' ?>
 
 <div>
+    <h1> Categorias </h1>
     <ul class="list-group">
-        <?php foreach($category as $cat): ?>
-            <li class="list-group-item item-task  finalizada ">
-                <div>
-                    <b><?= $cat->id_categoria ?></b> | <?=substr($cat->nombre_categoria,0,50)?> | <?=substr($cat->descripcion,0,100)?> 
-                </div>
-              
+        <?php foreach($categories as $cat): ?>
+            <li class="list-group-item item-task">
+                <div> 
+                    <a href="categoria/<?= $cat->id_categoria ?>">
+
+                        <b> <?= $cat->id_categoria ?></b> | <?=substr($cat->nombre_categoria,0,50)?> 
+                </a>
+                </div> 
             </li>
         <?php endforeach ?>
     </ul>
 </div>
 
-<?php require './templates/footer.phtml' ?>
-
-
-
+<?php require './templates/footer.phtml'?>
