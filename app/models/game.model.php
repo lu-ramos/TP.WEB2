@@ -33,19 +33,19 @@ class GameModel
     }
 
     public function insertGame($name, $detalle, $alturaMinima, $id_categoria){
-        $query = $this->db->prepare('INSERT INTO juegos VALUES = (?,?,?,?)');
+        $query = $this->db->prepare('INSERT INTO juegos (nombre_juego, detalle_juego, altura_minima, id_categoria) VALUES(?,?,?,?)');
         $query->execute([$name, $detalle, $alturaMinima, $id_categoria]);
 
         return $this->db->lastInsertId();
     }
 
     public function deleteGame($id){
-        $query = $this->db->prepare('DELETE FROM juegos WHERE id = ?');
+        $query = $this->db->prepare('DELETE FROM juegos WHERE id_juego = ?');
         $query->execute([$id]);
     }
 
     public function updateGame ($id) {    
-        $query = $this->db->prepare('UPDATE juegos SET `nombre_juego`= ?, WHERE id = ?');
+        $query = $this->db->prepare('UPDATE juegos SET `nombre_juego`= ?, WHERE id_juego = ?');
         $query->execute([$id]);
     }
 

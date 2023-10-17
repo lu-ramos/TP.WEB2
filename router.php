@@ -62,10 +62,10 @@ switch ($params[0]) {
     break;
     case 'agregarJuego':
         $controller = new AdminController();
-        $controller->ShowAddItemForm();
+        $controller->addGame();
     break;
     case 'eliminarJuego':
-        $controller = new GameController();
+        $controller = new AdminController();
         $controller->removeGame($params[1]);
     break;
     case 'modificarJuego':
