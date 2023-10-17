@@ -1,0 +1,19 @@
+<?php require './templates/header.phtml' ?>
+<?php require './templates/nav.phtml' ?>
+
+<div>
+<h1>
+    categoria name
+</h1>
+<?php foreach($categoryGames as $game): ?>
+            <li class="list-group-item item-task">
+                <div>
+                <a href="detalleJuego/<?= $game->id_juego ?>">
+                    <b> <?= $game->nombre_juego ?></b> | <?=substr($game->descripcion,0,50)?> 
+                </a>
+                </div> 
+            </li>
+<?php endforeach ?>
+
+</div>
+<?php require './templates/footer.phtml' ?>

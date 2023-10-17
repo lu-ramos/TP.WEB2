@@ -13,21 +13,21 @@ class CategoryController{
         $this->view = new CategoryView();
     }
 
-    public function showCategory(){    
+    public function getAllCategories(){    
 
         // obtiene los juegos del modelo
-        $category = $this->model->getCategory();
+        $categories = $this->model->getAllCategories();
         
         // los muestra a la vista
-        $this->view->showCategory($category);
+        $this->view->showCategories($categories);
     }
 
-    public function showGamesByCategory($categoryId){
+    public function getCategory($categoryId){
         // obtiene los juegos que pertenecen a la categoría seleccionada
-        $categoryGames = $this->model->getGamesByCategory($categoryId);
-        
+        $categoryGames = $this->model->getCategory($categoryId);
+
         // Muestra los juegos en la vista correspondiente
-        $this->view->showGamesByCategory($categoryGames);
+        $this->view->showCategory($categoryGames);
     }
 
     public function addCategory() {
@@ -59,4 +59,3 @@ class CategoryController{
 
 }
 
-?>

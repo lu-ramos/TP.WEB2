@@ -9,4 +9,17 @@
     <title>PARQUE DE DIVERSIONES</title>
 </head>
 <body>
+            <?php 
+            if (!empty($_SESSION['usuario'])) { ?>
+            <a class="btn btn-danger" href="logout">Cerrar sesion</a>
+            <?php } else { ?>
+                <a class="btn btn-success" href="login">Logearse  </a> 
+                <?php } ?>
+            </div>
 
+            <a class="btn btn-danger" href="logout">Deslogearse  </a> 
+            </div>
+        </nav>
+    </header>
+</body>
+</html>

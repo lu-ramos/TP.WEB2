@@ -42,11 +42,12 @@ switch ($params[0]) {
     break;
     case 'listarCategorias':
         $controller = new CategoryController();
-        $controller->showCategory();
+        $controller->getAllCategories();
+        break;
     break;
-    case 'juegosCategoria':
+    case 'categoria':
         $controller = new CategoryController();
-        $controller->showGamesByCategory($params[1]);
+        $controller->getCategory($params[1]);
     break;
     case 'login':
         $controller = new AuthController();

@@ -9,7 +9,7 @@ class AdminController {
     
 
     public function __construct() {
-        AuthHelper::verify();
+      //  AuthHelper::verify();
         $this->model = new GameModel();
         $this->view = new AdminView();   
     } 

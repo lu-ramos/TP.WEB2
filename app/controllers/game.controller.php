@@ -14,7 +14,6 @@ class GameController{
 
     }
 
-
     public function showGames(){
         // obtiene los juegos con nombres de categoría
         $gamesWithCategories = $this->model->getGamesWithCategoryNames();
