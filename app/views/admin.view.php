@@ -10,4 +10,8 @@ class AdminView {
         require_once './templates/modificarGame.phtml';
     }
 
+    public function ShowError($mensaje) {
+        require_once './templates/error.phtml';
+    }
+
 }

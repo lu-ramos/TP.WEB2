@@ -2,14 +2,13 @@
 <?php require './templates/header.phtml' ?>
 <?php require './templates/nav.phtml' ?>
 
-
 <div class="mt-2  p-2">
     <div class="row">
         <div class="col-lg-3">
 
             <h5>Juegos</h5>
 
-            <form method="POST" enctype="multipart/form-data" action="abmJuego">
+            <form method="POST" enctype="multipart/form-data" action="agregarJuego">
                 
                 <div class="form-group">
                 <label for="nombre">ID:</label>
@@ -32,11 +31,7 @@
                     <label for="altura">Altura:</label>
                     <input type="number" require class="form-control" id="altura_minima" name="altura_minima">
                 </div>
-                
-                <!-- <div class="form-group">
-                    <label for="id_categoria">Categoria:</label>
-                    <input type="number" require class="form-control" id="id_categoria" name="id_categoria">
-                </div>         -->
+
                 
                 <div class="form-group">
                     <label for="id_categoria">Categoria:</label>
@@ -51,9 +46,7 @@
 
 
                 <div class="btn-group" role="group" aria-label="">
-                    <button type="submit" name="accion" class='m-1 action-button success-color'>Guardar</button>
-                    <!-- value="agregarJuego" -->
-
+                    <button type="submit" class='m-1 btn btn-success'>Guardar</button>
                 </div>
             </form>
 
@@ -100,10 +93,14 @@
                                 <td>
                                     <div class="d-flex">
                                         <a method="POST" href="modificarJuego/<?=$game->id_juego?>"  type='button'>
-                                            <button codigoJuego="<?=$game->id_juego ?>" class="m-1 action-button">Selecc</button>
+                                            <button codigoJuego="<?=$game->id_juego ?>" class="m-1 btn btn-warning action-button">Editar</button>
                                         </a>
                                         <a  href="eliminarJuego/<?=$game->id_juego ?>"  type='button'>
-                                            <button class='m-1 action-button delete-color'>Borrar</button>
+                                            <button class='m-1 action-button btn btn-danger'>Borrar</button>
+                                        </a>
+
+                                        <a  href="detalleJuego/<?=$game->id_juego ?>"  type='button'>
+                                            <button class='m-1 action-button btn btn-info'>ver</button>
                                         </a>
                                     </div>
                                 </td>
@@ -119,33 +116,6 @@
 </div>
 
 
-
-<script  src="./libs/datatable/jquery-3.5.1.js" > </script>
-<script  src="./libs/datatable/jquery.dataTables.min.js" > </script>
-<script  src="./libs/datatable/dataTables.bootstrap5.min.js" > </script>
-
-
-<script type="text/javascript" >
-    $(document).ready(function () {
-        var table = $('#tablaJuegos').DataTable({
-            scrollCollapse: true,
-            paging: true,
-            searching: true,
-            pageLength: 50,
-            order: [ [1, 'asc' ]],
-            fixedColumns: true
-        });
-
-     
-        
-
-    });
-</script> 
-
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<script type="text/javascript" src="./js/funciones.js"></script>
 
 
 <?php require './templates/footer.phtml' ?>

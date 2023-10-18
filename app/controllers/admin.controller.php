@@ -16,13 +16,13 @@ class AdminController {
     
     public function addGame() {
 
-        $name = $_POST['nombre_juego']; //obtengo los juegos
+        $name = $_POST['nombre_juego'];
         $detalle = $_POST['detalle_juego'];
         $alturaMinima = $_POST['altura_minima'];
         $id_categoria = $_POST['id_categoria'];
 
         if (empty($name) || empty($detalle) || empty($alturaMinima) || empty($id_categoria)) {
-            // $this->view->showError("Debe completar todos los campos");
+            $this->view->showError("Debe completar todos los campos");
             return;
         }
 

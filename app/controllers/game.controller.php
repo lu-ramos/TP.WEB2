@@ -42,46 +42,39 @@ class GameController{
 
 
     public function showEditGameForm($id) {
-        // ACA SE LLAMA AL MODEL Y SE TRAE TODA LA DATA DEL JUEGO CON $id (PASADO EN PARAMETRO)
-       $gameDetails = $this-> model->getGameDetails($id);
-        // ACA SE PASA A LA VIEW LOS DATOS TRAIDOS DESLDE EL MODEL (DEL JUEGO) Y SE MUESTRA EL FORMULARIO
-        $this->view->showEditGameForm($id);
+        $gameDetails = $this->model->getGameDetails($id);
+        $this->view->showEditGameForm($id, $gameDetails);
     }
 
-    public function modifyGame($id){
+    public function modifyGame(){
         // AuthHelper::verify();
 
-
-        // var_dump($_POST);
+        $id_juego = $_POST['juego_id']; //obtengo los juegos
         $name = $_POST['nombre_juego']; //obtengo los juegos
-        echo $name;
-        echo $id;
-        // if ($_POST == null) return;
+        $detalle = $_POST['detalle_juego'];
+        $alturaMinima = $_POST['altura_minima'];
+        $id_categoria = $_POST['id_categoria'];
         
-        // $name = $_POST['nombre_juego']; //obtengo los juegos
-        // $detalle = $_POST['detalle_juego'];
-        // $alturaMinima = $_POST['altura_minima'];
-        // $id_categoria = $_POST['id_categoria'];
+        // echo 'se va a editar' . $id_juego . 'con el nombre:' . $name . "detalle:" . $detalle . "altura minima: " . $alturaMinima . "id cat: " . $id_categoria;
 
-        
 
-        // // $id_juego = $_POST['id_juego'];
 
         // if (empty($name) || empty($detalle) || empty($alturaMinima) || empty($id_categoria)) {
-        //     // $this->view->showError("Debe completar todos los campos");
+        //     $this->view->showError("Debe completar todos los campos");
         //     return;
         // }
 
         
-        // $id = $this->model->updateGame($name, $detalle, $alturaMinima, $id_categoria, $id_juego);
+        $id = $this->model->updateGame($name, $detalle, $alturaMinima, $id_categoria, $id_juego);
       
-        // if ($id) {
-        //     $controller = new GameController();
-        //     $controller->showGames();
-        //    // header('Location: ' . BASE_URL);
-        // } else {
-        //     // $this->view->showError("Error al insertar el juego");
-        // }
+        if ($id) {
+            $controller = new GameController();
+            $controller->showGames();
+           // header('Location: ' . BASE_URL);
+        } else {
+            // Traer view que contenga mostrar error
+            // $this->view->showError("Error al insertar el juego");
+        }
     }
         
 

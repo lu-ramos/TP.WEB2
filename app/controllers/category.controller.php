@@ -11,6 +11,7 @@ class CategoryController{
         AuthHelper::verify();
         $this->model = new CategoryModel();
         $this->view = new CategoryView();
+
     }
 
     public function getAllCategories(){    
@@ -32,23 +33,27 @@ class CategoryController{
 
     public function addCategory() {
 
-        $category = $_POST['category']; //obtengo los juegos
-  
-        if (empty($category)) {
-           // $this->view->showError("Debe completar todos los campos");
-            return;
-        }
+        $nombre_categoria = $_POST['nombre_categoria']; //obtengo los juegos
+        $descripcion = $_POST['descripcion']; //obtengo los juegos
 
-        $id = $this->model->insertCategory($category);
+
+        // if (empty($nombre_categoria) && empty($descripcion)) {
+        //    $this->viewAdmin->showError("Debe completar todos los campos");
+        //     return;
+        // }
+
+
+        $id = $this->model->insertCategory($nombre_categoria, $descripcion);
         if ($id) {
-            header('Location: ' . BASE_URL);
+            $this->view->showSuccess("Creado con exito");
         } else {
             //$this->view->showError("Error al insertar la categoria");
         }
+        
     }
 
-    public function removecategory ($id) {
-        $this->model->deleteCategory ($id);
+    public function removeCategory($id_categoria) {
+        $this->model->deleteCategory($id_categoria);
         header('Location: ' . BASE_URL);
     }
 

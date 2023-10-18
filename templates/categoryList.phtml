@@ -1,10 +1,18 @@
 
-
 <?php require './templates/header.phtml' ?>
 <?php require './templates/nav.phtml' ?>
 
 <div>
     <h1> Categorias </h1>
+
+    <form method="POST" enctype="multipart/form-data" action="agregarCategoria">        
+        <label for="nombre">Nombre cat:</label>
+        <input type="text" require class="form-control" id="nombre_categoria" name="nombre_categoria" maxlength="100" placeholder="Nombre del Juego">
+        <label for="detalle">descripcion:</label>
+        <input type="text" require class="form-control" id="descripcion" name="descripcion" placeholder="Detalle del la cat" >
+        <button type="submit" class='btn btn-success'>Guardar</button>
+    </form>
+
     <ul class="list-group">
         <?php foreach($categories as $cat): ?>
             <li class="list-group-item item-task">
@@ -14,6 +22,10 @@
                         <b> <?= $cat->id_categoria ?></b> | <?=substr($cat->nombre_categoria,0,50)?> 
                 </a>
                 </div> 
+
+                <a href="eliminarCategoria/<?= $cat->id_categoria ?>" >
+                    <button class=' btn btn-danger'>Borrar</button>
+                </a>
             </li>
         <?php endforeach ?>
     </ul>

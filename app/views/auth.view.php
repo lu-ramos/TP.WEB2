@@ -10,14 +10,14 @@ class AuthView {
         require './templates/error.phtml';
     }
 
-    public function accessUser($usuario,$password){ 
-        if($usuario && $password == ($usuario->password)){
-            echo "Acceso exitoso";
-        }
-        else{
-            echo "Acceso denegado";
-        }
-    }
+    // public function accessUser($usuario,$password){ 
+    //     if($usuario && $password == ($usuario->password)){
+    //         echo "Acceso exitoso";
+    //     }
+    //     else{
+    //         echo "Acceso denegado";
+    //     }
+    // }
 }
 
 ?>

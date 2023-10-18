@@ -11,5 +11,8 @@ class CategoryView {
         require './templates/categoryList.phtml';
     }
 
+    public function showSuccess($categories) {
+        require './templates/succescat.phtml';
+    }
 
 }

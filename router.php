@@ -1,5 +1,8 @@
 <?php
 
+// Comenzamos por lo privado y se nos hizo tarde para hacer el publico.
+// Nos comprometemos para la ultima entrega realizar todas las consignas y en orden.
+
 require_once './app/controllers/game.controller.php';
 require_once './app/controllers/category.controller.php';
 require_once './app/controllers/auth.controller.php';
@@ -26,8 +29,6 @@ if (!empty( $_GET['action'])) {
 
 
 $params = explode('/', $action);
-//var_dump($params );
-// var_dump($_POST);
 
 switch ($params[0]) { 
     case 'index':
@@ -63,25 +64,14 @@ switch ($params[0]) {
         $controller = new AuthController();
         $controller->logout();
     break;
-    // case 'agregarJuego':
-    // case 'abmJuego':
-    //     $controller = new AdminController();
-
-    //     if ($_POST != null){
-    //         if ($_POST['id_juego'] == null || $_POST['id_juego'] == "")
-    //             $controller->addGame();
-    //         else
-    //             $controller->modifyGame($params[1]);
-    //     }
-    // break;
+    case 'agregarJuego':
+        $controller = new AdminController();
+        $controller->addGame();
+    break;
     case 'eliminarJuego':
         $controller = new AdminController();
         $controller->removeGame($params[1]);
     break;
-
-
-
-    // Esto muestra el formulrio para editar un juego
     case 'modificarJuego':
         $controller = new GameController();
         $controller->showEditGameForm($params[1]);
@@ -91,25 +81,17 @@ switch ($params[0]) {
         $controller = new GameController();
         $controller->modifyGame($params[1]);
     break;
-
-    //  case 'ObtenerJuegoJS':
-    //     // $controller = new AdminController();
-    //     // var_dump($_POST);
-    //     // $controller->seleccionarGame();
-    //     $modelGame = new GameModel();
-    //     $modelGame->getGameJS();
-    // break;
-
-    // case 'abmJuego':
-    //     $controller = new AdminController();
-    //     var_dump($_POST);
-    //     $controller->modifyGame();
-    // break;
-
+    case 'eliminarCategoria':
+        $controller = new CategoryController();
+        $controller->removeCategory($params[1]);
+    break;
+    case 'agregarCategoria':
+        $controller = new CategoryController();
+        $controller->addCategory();
+    break;
     // case 'error':
     //     $controller = new Error(); 
     //     $controller->showError();
     // break;
+
 }
-
-

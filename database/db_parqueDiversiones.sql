@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 10-10-2023 a las 22:46:42
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 18-10-2023 a las 03:16:05
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -18,26 +18,26 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `db_parqueDiversiones`
+-- Base de datos: `db_parquediversiones`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Categorias`
+-- Estructura de tabla para la tabla `categorias`
 --
 
-CREATE TABLE `Categorias` (
+CREATE TABLE `categorias` (
   `id_categoria` int(11) NOT NULL,
   `nombre_categoria` varchar(45) NOT NULL,
   `descripcion` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `Categorias`
+-- Volcado de datos para la tabla `categorias`
 --
 
-INSERT INTO `Categorias` (`id_categoria`, `nombre_categoria`, `descripcion`) VALUES
+INSERT INTO `categorias` (`id_categoria`, `nombre_categoria`, `descripcion`) VALUES
 (1, 'Acuáticos', 'Parque de agua'),
 (2, 'Safari', 'Recorrido por la jungla'),
 (3, 'Eléctricos', 'Juegos simuladores'),
@@ -47,27 +47,25 @@ INSERT INTO `Categorias` (`id_categoria`, `nombre_categoria`, `descripcion`) VAL
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Juegos`
+-- Estructura de tabla para la tabla `juegos`
 --
 
-CREATE TABLE `Juegos` (
+CREATE TABLE `juegos` (
   `id_juego` int(11) NOT NULL,
   `nombre_juego` varchar(45) NOT NULL,
+  `detalle_juego` varchar(200) NOT NULL,
+  `altura_minima` float NOT NULL,
   `id_categoria` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `Juegos`
+-- Volcado de datos para la tabla `juegos`
 --
 
-INSERT INTO `Juegos` (`id_juego`, `nombre_juego`, `id_categoria`) VALUES
-(1, 'Toboganes', 1),
-(2, 'Desorbitado', 5),
-(3, 'Zoo', 2),
-(4, 'Simuladores', 3),
-(5, 'Show Nemo', 4),
-(6, 'Montaña Rusa', 5),
-(7, 'Autitos Chocadores', 3);
+INSERT INTO `juegos` (`id_juego`, `nombre_juego`, `detalle_juego`, `altura_minima`, `id_categoria`) VALUES
+(23, 'Autitos Chocadores', 'la pau  cra', 2, 2),
+(25, 'Nuevo juego', 'asdasd', 2, 2),
+(26, 'Juego god', 'Godeto', 22, 4);
 
 -- --------------------------------------------------------
 
@@ -78,30 +76,31 @@ INSERT INTO `Juegos` (`id_juego`, `nombre_juego`, `id_categoria`) VALUES
 CREATE TABLE `usuarios` (
   `id_usuario` int(11) NOT NULL,
   `usuario` varchar(45) NOT NULL,
-  `password` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `password` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `usuario`, `password`) VALUES
-(1, 'webadmin', 'admin');
+(1, 'webadmin', '$2y$10$6k9jZ0LQGsQFAuGwyB/y1esKRUXa5Ukes5jZIA75T7SU35jZvb/7W'),
+(2, 'mario', 'marioo');
 
 --
 -- Índices para tablas volcadas
 --
 
 --
--- Indices de la tabla `Categorias`
+-- Indices de la tabla `categorias`
 --
-ALTER TABLE `Categorias`
+ALTER TABLE `categorias`
   ADD PRIMARY KEY (`id_categoria`);
 
 --
--- Indices de la tabla `Juegos`
+-- Indices de la tabla `juegos`
 --
-ALTER TABLE `Juegos`
+ALTER TABLE `juegos`
   ADD PRIMARY KEY (`id_juego`),
   ADD KEY `fk_Juegos_Categorias` (`id_categoria`);
 
@@ -116,32 +115,32 @@ ALTER TABLE `usuarios`
 --
 
 --
--- AUTO_INCREMENT de la tabla `Categorias`
+-- AUTO_INCREMENT de la tabla `categorias`
 --
-ALTER TABLE `Categorias`
+ALTER TABLE `categorias`
   MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT de la tabla `Juegos`
+-- AUTO_INCREMENT de la tabla `juegos`
 --
-ALTER TABLE `Juegos`
-  MODIFY `id_juego` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+ALTER TABLE `juegos`
+  MODIFY `id_juego` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
--- Filtros para la tabla `Juegos`
+-- Filtros para la tabla `juegos`
 --
-ALTER TABLE `Juegos`
-  ADD CONSTRAINT `fk_Juegos_Categorias` FOREIGN KEY (`id_categoria`) REFERENCES `Categorias` (`id_categoria`);
+ALTER TABLE `juegos`
+  ADD CONSTRAINT `fk_Juegos_Categorias` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id_categoria`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

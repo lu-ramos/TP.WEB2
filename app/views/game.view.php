@@ -6,14 +6,13 @@ class GameView {
         
         require_once './templates/gamesList.phtml';
     }
-    // VERIFICAR CON EL GAMELIST SI FUNCIONA!
 
     public function showGameDetails($gameDetails) {
 
         require_once './templates/game.phtml';
     }
 
-    public function showEditGameForm($id) {
+    public function showEditGameForm($id, $gameDetails) {
 
         require_once './templates/editGameForm.phtml';
     }

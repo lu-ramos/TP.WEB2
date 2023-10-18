@@ -75,5 +75,3 @@ class GameModel
     }
 
 }
-// $query = $this->db->prepare('UPDATE tareas SET finalizada = 1 WHERE id = ?');
-// $query->execute([$id]);

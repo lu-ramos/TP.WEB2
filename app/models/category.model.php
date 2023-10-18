@@ -33,16 +33,24 @@ class CategoryModel {
         return $categoryGames;
     }
 
-    public function insertCategory ($category){
-        $query = $this->db->prepare('INSERT INTO categorias(category) VALUES(?)');
-        $query->execute([$category]);
+    public function insertCategory ($name, $descripcion){
+        $query = $this->db->prepare('INSERT INTO categorias (nombre_categoria, descripcion) VALUES(?,?)');
+        $query->execute([$name, $descripcion]);
 
         return $this->db->lastInsertId();
     }
+    
 
-    public function deleteCategory ($id){
-        $query = $this->db->prepare('DELETE FROM categorias WHERE id = ?');
-        $query->execute([$id]);
+    public function insertGame($name, $detalle, $alturaMinima, $id_categoria){
+        $query = $this->db->prepare('INSERT INTO juegos (nombre_juego, detalle_juego, altura_minima, id_categoria) VALUES(?,?,?,?)');
+        $query->execute([$name, $detalle, $alturaMinima, $id_categoria]);
+
+        return $this->db->lastInsertId();
+    }
+    public function deleteCategory ($id_categoria){
+        echo "esto trae el id" . $id_categoria;
+        $query = $this->db->prepare('DELETE FROM categorias WHERE id_categoria = ?');
+        $query->execute([$id_categoria]);
     
     }
 

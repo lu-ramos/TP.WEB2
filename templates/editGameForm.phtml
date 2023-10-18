@@ -4,24 +4,29 @@
 
 <div>
  <h1>Formulario</h1>
+ <h2>Editar Juego - ID: <?php echo $id; ?></h2>
+ <h2>nombre juego: <?php echo $gameDetails->nombre_juego; ?></h2>
 
  <!-- LA DATA VA A VENIR $GAMEDETAILS -->
 
-        <h2>EL ID A EDITAR: <?php $id ?></h2>
  <form action="editarJuego" method="POST">
+
+    <input type="hidden" name="juego_id" value="<?php echo $id; ?>">
+
+
     <label for="nombre"> Nombre </label>
-    <input type="text" name="nombre_juego" placeholder="jajuajajajajja">
+    <input type="text" name="nombre_juego" value="<?php echo $gameDetails->nombre_juego; ?>">
 
 
 
     <label for="detalle">Detalle</label>
-    <input type="text" name="detalle">
+    <input type="text" name="detalle_juego" value="<?php echo $gameDetails->detalle_juego; ?>">
 
     <label for="altura">Altura</label>
-    <input type="number" name="altura">
+    <input type="number" name="altura_minima" value="<?php echo $gameDetails->altura_minima; ?>">
     
     <label for="id"> Categoria</label>
-    <input type="number" name="id">
+    <input type="number" name="id_categoria" value="<?php echo $gameDetails->id_categoria; ?>">
         
     <button class="btn btn-success" type="submit"> modificar</button>
 </form>
