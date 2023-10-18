@@ -8,7 +8,7 @@ class CategoryController{
     private $view;
 
     function __construct(){
-        // AuthHelper::verify();
+        AuthHelper::verify();
         $this->model = new CategoryModel();
         $this->view = new CategoryView();
     }
@@ -25,7 +25,7 @@ class CategoryController{
     public function getCategory($categoryId){
         // obtiene los juegos que pertenecen a la categoría seleccionada
         $categoryGames = $this->model->getCategory($categoryId);
-
+        
         // Muestra los juegos en la vista correspondiente
         $this->view->showCategory($categoryGames);
     }

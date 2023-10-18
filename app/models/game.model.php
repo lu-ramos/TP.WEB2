@@ -21,6 +21,28 @@ class GameModel
         return $games;
     }
 
+    public function getGame($gameId){
+
+        $query = $this->db->prepare("SELECT * FROM juegos WHERE id_juego = ?  ");
+        $query->execute([$gameId]);
+        
+        $gameDetails = $query->fetch(PDO::FETCH_OBJ);
+        // echo" $gameDetails->detalle_juego";
+        return $gameDetails;
+    }
+
+    
+
+    function getGameJS() 
+    {
+        var_dump($_POST);
+        $id=(!is_null($_POST['id_juego']) && !empty($_POST['id_juego'])) ? $_POST['id_juego']:'';
+        $juego=$this->getGame($id);
+
+        echo json_encode($juego);
+    }
+
+
 
     public function getGameDetails($gameId){
 
@@ -48,6 +70,10 @@ class GameModel
     public function updateGame ($nombre_juego, $detalle_juego, $altura_minima, $id_categoria, $id_juego) {    
         $query = $this->db->prepare('UPDATE juegos SET nombre_juego=?, detalle_juego=?, altura_minima=?, id_categoria=? WHERE id_juego = ?');
         $query->execute([$nombre_juego,$detalle_juego, $altura_minima, $id_categoria, $id_juego]);
+        return $id_juego;
+        
     }
 
 }
+// $query = $this->db->prepare('UPDATE tareas SET finalizada = 1 WHERE id = ?');
+// $query->execute([$id]);

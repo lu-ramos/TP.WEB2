@@ -2,26 +2,150 @@
 <?php require './templates/header.phtml' ?>
 <?php require './templates/nav.phtml' ?>
 
-<div>
-    <h1>Lista de juegos</h1>
-    <ul class="list-group">
-        <?php foreach($games as $game): ?>
-            <li class="list-group-item item-task ">
-                <div>
-                    <a href="detalleJuego/<?= $game->id_juego ?>">
-                        <div>
-                            <b><?= $game->nombre_juego?> </b>
-                            <?=substr($game->nombre_categoria,0,50)?>
-                        </div>
-                    </a>
+
+<div class="mt-2  p-2">
+    <div class="row">
+        <div class="col-lg-3">
+
+            <h5>Juegos</h5>
+
+            <form method="POST" enctype="multipart/form-data" action="abmJuego">
+                
+                <div class="form-group">
+                <label for="nombre">ID:</label>
+                    <input type="number" readonly id="id_juego" name="id_juego" >
                 </div>
-              <a href="eliminarJuego/<?=$game->id_juego ?>" type="button" class="btn btn-danger"> eliminar</a>
-              <a href="modificarJuego/<?=$game->id_juego ?>" type="button" class="btn btn-warning"> editar</a>
-            </li>
-        <?php endforeach ?>
-    </ul>
-</div>    
+
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" require class="form-control" id="nombre_juego" name="nombre_juego"
+                        maxlength="100" placeholder="Nombre del Juego">
+                </div>
+
+                <div class="form-group">
+                    <label for="detalle">Detalle:</label>
+                    <input type="text" require class="form-control" id="detalle_juego" name="detalle_juego"
+                        placeholder="Detalle del Juego" >
+                </div>
+
+                <div class="form-group">
+                    <label for="altura">Altura:</label>
+                    <input type="number" require class="form-control" id="altura_minima" name="altura_minima">
+                </div>
+                
+                <!-- <div class="form-group">
+                    <label for="id_categoria">Categoria:</label>
+                    <input type="number" require class="form-control" id="id_categoria" name="id_categoria">
+                </div>         -->
+                
+                <div class="form-group">
+                    <label for="id_categoria">Categoria:</label>
+                    <select class="form-select-sm" required id="id_categoria" name="id_categoria">
+                        <option value="null">Ingrese Categoria</option>
+
+                        <?php foreach($listaCategorias as $categ): ?>                                                         
+                            <option value="<?= $categ->id_categoria ?>"><?= $categ->nombre_categoria ?></option>
+                        <?php endforeach ?>
+                    </select>
+                </div>
 
 
-<?php require './templates/abm.phtml' ?>
+                <div class="btn-group" role="group" aria-label="">
+                    <button type="submit" name="accion" class='m-1 action-button success-color'>Guardar</button>
+                    <!-- value="agregarJuego" -->
+
+                </div>
+            </form>
+
+          
+        </div>
+        <!-- #endregion -->
+
+        <!-- #region tabla de Selección de Registros -->
+        <div class="col-lg-9">
+
+
+            <!-- Lista de usuarios -->
+            <div class="mt-3 row table-container table-responsive-sm user-table-container">
+                <table class="table table-bordered table-hover table-striped table-sm user-table" id="tablaJuegos">
+                    <thead class="usuarios-head ">
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Detalle</th>
+                            <th scope="col">Altura</th>
+                            <th scope="col">Categoria</th>
+                            <th scope="col">Acciones</th>
+
+                        </tr>
+                    </thead>
+                    <tbody class="">
+                        <?php foreach($games as $game): ?>
+                            <tr class="row-table">
+                                <td class="text-sm-left text-nowrap " td_id_juego=<?= $game->id_juego ?> >
+                                    <p><?= $game->id_juego ?></p>
+                                </td>
+                                <td class="text-sm-left text-nowrap " td_nombre_juego=<?= $game->nombre_juego ?> >
+                                    <p><?= $game->nombre_juego ?></p>
+                                </td>
+                                <td class="text-sm-left text-nowrap "  td_detalle_juego=<?= $game->detalle_juego ?>>
+                                    <p><?= $game->detalle_juego ?></p>
+                                </td>
+                                <td class="text-sm-left text-nowrap " td_altura_minima=<?= $game->altura_minima ?>>
+                                    <p><?= $game->altura_minima ?></p>
+                                </td>
+                                <td class="text-sm-left text-nowrap " td_id_categoria=<?= $game->id_categoria ?>>
+                                    <p><?= $game->id_categoria ?></p>
+                                </td>
+                                <td>
+                                    <div class="d-flex">
+                                        <a method="POST" href="modificarJuego/<?=$game->id_juego?>"  type='button'>
+                                            <button codigoJuego="<?=$game->id_juego ?>" class="m-1 action-button">Selecc</button>
+                                        </a>
+                                        <a  href="eliminarJuego/<?=$game->id_juego ?>"  type='button'>
+                                            <button class='m-1 action-button delete-color'>Borrar</button>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+<script  src="./libs/datatable/jquery-3.5.1.js" > </script>
+<script  src="./libs/datatable/jquery.dataTables.min.js" > </script>
+<script  src="./libs/datatable/dataTables.bootstrap5.min.js" > </script>
+
+
+<script type="text/javascript" >
+    $(document).ready(function () {
+        var table = $('#tablaJuegos').DataTable({
+            scrollCollapse: true,
+            paging: true,
+            searching: true,
+            pageLength: 50,
+            order: [ [1, 'asc' ]],
+            fixedColumns: true
+        });
+
+     
+        
+
+    });
+</script> 
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script type="text/javascript" src="./js/funciones.js"></script>
+
+
 <?php require './templates/footer.phtml' ?>

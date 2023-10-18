@@ -1,0 +1,30 @@
+<?php require './templates/header.phtml' ?>
+<?php require './templates/nav.phtml' ?>
+
+
+<div>
+ <h1>Formulario</h1>
+
+ <!-- LA DATA VA A VENIR $GAMEDETAILS -->
+
+        <h2>EL ID A EDITAR: <?php $id ?></h2>
+ <form action="editarJuego" method="POST">
+    <label for="nombre"> Nombre </label>
+    <input type="text" name="nombre_juego" placeholder="jajuajajajajja">
+
+
+
+    <label for="detalle">Detalle</label>
+    <input type="text" name="detalle">
+
+    <label for="altura">Altura</label>
+    <input type="number" name="altura">
+    
+    <label for="id"> Categoria</label>
+    <input type="number" name="id">
+        
+    <button class="btn btn-success" type="submit"> modificar</button>
+</form>
+    </div>
+
+<?php require './templates/footer.phtml' ?>

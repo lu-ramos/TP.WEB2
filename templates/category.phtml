@@ -2,18 +2,18 @@
 <?php require './templates/nav.phtml' ?>
 
 <div>
-<h1>
-    categoria name
-</h1>
-<?php foreach($categoryGames as $game): ?>
+    <h1>Juegos contenidos en la categoria</h1>
+
+    <ul class="list-group">
+        <?php foreach($categoryGames as $cat): ?>
             <li class="list-group-item item-task">
-                <div>
-                <a href="detalleJuego/<?= $game->id_juego ?>">
-                    <b> <?= $game->nombre_juego ?></b> | <?=substr($game->descripcion,0,50)?> 
-                </a>
+                <div> 
+                    <b> <?= $cat->id_juego ?></b> | <?=substr($cat->nombre_juego,0,50)?> 
                 </div> 
             </li>
-<?php endforeach ?>
+        <?php endforeach ?>
+    </ul>
 
 </div>
+
 <?php require './templates/footer.phtml' ?>

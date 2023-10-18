@@ -1,0 +1,55 @@
+
+<?php require './templates/header.phtml' ?>
+<?php require './templates/nav.phtml' ?>
+
+
+<div>
+    <h1>Lista de juegos</h1>
+    <form  method="POST" enctype="multipart/form-data" action="abmJuego" class="my-4">
+        <?php foreach($games as $game): ?>
+            <div>
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" value= <?= $game->nombre_categoria ?>>
+
+                <label for="detalle">Detalle</label>
+                <input type="text" name="detalle" value= <?= $game->detalle_juego ?>>
+
+                <label for="altura">Altura</label>
+                <input type="number" name="altura" value= <?= $game->altura_minima ?>>
+                
+                <label for="id_categoria">Categoria</label>
+                <input type="number" name="id_categoria" value=<?= $game->id_categoria ?>>
+
+                <input type="number" name="id_juego" value= <?= $game->id_juego ?>>
+            </div>
+
+            <a href="eliminarJuego/<?=$game->id_juego ?>" type="button" class="btn btn-danger" > eliminar</a>
+            <a href="modificarJuego/<?=$game->id_juego ?>" type="button" class="btn btn-warning" >editar</a>
+            <button type="submit" name="modificar" value="<?=$game->id_juego ?>" class="btn btn-warning">editar</button>
+        <?php endforeach ?>
+
+        <div>
+            <label for="nombre_juego">Nombre</label>
+            <input type="text" name="nombre_juego">
+
+            <label for="detalle_juego">Detalle</label>
+            <input type="text" name="detalle_juego" >
+
+            <label for="altura_juego">Altura</label>
+            <input type="number" name="altura_juego">
+            
+            <label for="id_categoria">Categoria</label>
+            <input type="number" name="id_categoria" >
+        </div>
+
+        <button class="btn btn-success" type="submit"> agregar</button>
+            
+        
+    </form>
+</div>    
+
+
+
+
+
+<?php require './templates/footer.phtml' ?>

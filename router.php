@@ -26,6 +26,8 @@ if (!empty( $_GET['action'])) {
 
 
 $params = explode('/', $action);
+//var_dump($params );
+// var_dump($_POST);
 
 switch ($params[0]) { 
     case 'index':
@@ -61,18 +63,48 @@ switch ($params[0]) {
         $controller = new AuthController();
         $controller->logout();
     break;
-    case 'agregarJuego':
-        $controller = new AdminController();
-        $controller->addGame();
-    break;
+    // case 'agregarJuego':
+    // case 'abmJuego':
+    //     $controller = new AdminController();
+
+    //     if ($_POST != null){
+    //         if ($_POST['id_juego'] == null || $_POST['id_juego'] == "")
+    //             $controller->addGame();
+    //         else
+    //             $controller->modifyGame($params[1]);
+    //     }
+    // break;
     case 'eliminarJuego':
         $controller = new AdminController();
         $controller->removeGame($params[1]);
     break;
+
+
+
+    // Esto muestra el formulrio para editar un juego
     case 'modificarJuego':
-        $controller = new AdminController();
+        $controller = new GameController();
+        $controller->showEditGameForm($params[1]);
+    break;
+
+    case 'editarJuego':
+        $controller = new GameController();
         $controller->modifyGame($params[1]);
     break;
+
+    //  case 'ObtenerJuegoJS':
+    //     // $controller = new AdminController();
+    //     // var_dump($_POST);
+    //     // $controller->seleccionarGame();
+    //     $modelGame = new GameModel();
+    //     $modelGame->getGameJS();
+    // break;
+
+    // case 'abmJuego':
+    //     $controller = new AdminController();
+    //     var_dump($_POST);
+    //     $controller->modifyGame();
+    // break;
 
     // case 'error':
     //     $controller = new Error(); 
